@@ -3,6 +3,8 @@ from twilio import twiml
 from .hold import HoldMusic
 from twilio_accelerate_workshop.wrappers import twilio
 from django.conf import settings
+from .shortcuts import redirect_url
+
 
 @twilio
 def add_to_queue(request):
@@ -14,9 +16,11 @@ def add_to_queue(request):
     if request.POST and request.POST.get('From', None) and request.POST['From'] in settings.PRIORITY_PHONE_NUMBERS:
         queue = 'PriorityQueue'
     else:
-        queue = 'Default'
+        queue = 'DefaultQueue'
 
-    r.enqueue(queue, waitUrl=resolve_url('queue_wait')+'?queue='+queue)
+    wait_url = redirect_url(resolve_url(queue_wait), queue=queue)
+
+    r.enqueue(queue, waitUrl=wait_url)
 
     return r
 

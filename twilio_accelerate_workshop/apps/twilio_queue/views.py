@@ -15,13 +15,11 @@ def add_to_queue(request):
     return HttpResponse(str(r))
 
 @csrf_exempt
-def queue_wait(request, digits=None, hold_music=HoldMusic):
+def queue_wait(request, digits=None, music_type=HoldMusic.CLASSICAL, hold_music=HoldMusic):
 
     if request.POST and request.POST['Digits'] and digits is None:
         digits = request.POST['Digits']
-        music_type = HoldMusic.get_music_type(digits)
-    else:
-        music_type = HoldMusic.CLASSICAL
+        music_type = hold_music.get_music_type(digits)
 
     r = twiml.Response()
 

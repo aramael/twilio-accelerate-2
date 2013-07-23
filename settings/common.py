@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en//ref/settings/
 
 import os
 
+PRIORITY_PHONE_NUMBERS = ('+16467838439',)
+
 #==============================================================================
 # Generic Django project settings
 #==============================================================================

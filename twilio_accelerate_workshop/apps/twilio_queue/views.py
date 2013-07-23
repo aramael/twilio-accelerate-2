@@ -16,7 +16,7 @@ def add_to_queue(request):
     else:
         queue = 'Default'
 
-    r.enqueue(queue, waitUrl=resolve_url('queue_wait'))
+    r.enqueue(queue, waitUrl=resolve_url('queue_wait')+'?queue='+queue)
 
     return r
 

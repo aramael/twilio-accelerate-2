@@ -16,6 +16,8 @@ def add_to_queue(request):
 @twilio
 def queue_wait(request, digits=None, music_type=HoldMusic.CLASSICAL, hold_music=HoldMusic):
 
+    hold_music = hold_music()
+
     # Set Music URL
     if request.POST and request.POST.get('Digits', None) and digits is None:
         digits = request.POST['Digits']

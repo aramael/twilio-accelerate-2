@@ -54,6 +54,5 @@ class HoldMusic(object):
         "6": SOFT_ROCK,
     }
 
-    @staticmethod
-    def get_music_type(digits):
-        return HoldMusic.MUSIC_TYPES.get(digits, HoldMusic.CLASSICAL)
+    def get_music_type(self, digits):
+        return self.MUSIC_TYPES.get(digits, self.CLASSICAL)

@@ -8,8 +8,8 @@ def redirect_url(to, **kwargs):
         cleaned_kwargs = {}
 
         for key, value in kwargs.iteritems():
-            if type(value) is list:
-                kwarg = ','.join(value)
+            if isinstance(value, list):
+                value = ','.join(value)
             cleaned_kwargs[key] = value
 
         query_args = '?' + urllib.urlencode(cleaned_kwargs)

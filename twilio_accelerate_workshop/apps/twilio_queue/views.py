@@ -12,9 +12,11 @@ def add_to_queue(request):
     r.say('Welcome to Acme Industries. To change your hold music dial numbers 1 through 6.')
 
     if request.POST and request.POST.get('From', None) and request.POST['From'] in settings.PRIORITY_PHONE_NUMBERS:
-        r.enqueue('PriorityQueue', waitUrl=resolve_url('queue_wait'))
+        queue = 'PriorityQueue'
     else:
-        r.enqueue('DefaultQueue', waitUrl=resolve_url('queue_wait'))
+        queue = 'Default'
+
+    r.enqueue(queue, waitUrl=resolve_url('queue_wait'))
 
     return r
 
